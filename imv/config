@@ -1,0 +1,8 @@
+[options]
+background = 121212
+overlay = true
+overlay_font = Cascadia Code:15
+overlay_background_alpha = 00
+[binds]
+n = next
+p = prev

@@ -1,0 +1,121 @@
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term kitty -1 
+set $menu rofi -show drun -show-icons -theme ../rofi/material.rasi
+exec swayidle -w \
+          timeout 300 '/home/diego/.dotfiles/sway/scripts/lock.sh' \
+          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          before-sleep '/home/diego/.dotfiles/sway/scripts/lock.sh'
+        default_border pixel 2
+        default_floating_border pixel 2
+        hide_edge_borders smart
+        smart_borders on
+        gaps inner 0
+        gaps outer 0
+seat seat0 xcursor_theme "capitaine-cursors" 32
+set $cl_high #5294e2
+set $cl_indi #d9d8d8
+set $cl_back #121212
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
+    bindsym $mod+Return exec $term
+    bindsym $mod+q kill
+    bindsym $mod+space exec $menu
+    bindsym $mod+s exec $HOME/.config/sway/scripts/screenshot
+    bindsym $mod+n exec /home/diego/.dotfiles/sway/scripts/bluethoot.sh
+    bindsym $mod+c exec clipman pick -t wofi
+    bindsym $mod+f exec firefox 
+    bindsym $mod+e exec pcmanfm
+    bindsym $mod+d exec emacsclient -c -a emacs
+    bindsym $mod+x exec /home/diego/.dotfiles/sway/scripts/wofi-power.sh
+    bindsym $mod+z exec /home/diego/.dotfiles/sway/scripts/lock.sh
+    bindsym $mod+Shift+n exec swaync-client -t -sw
+bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+for_window [title="Picture-in-Picture"] floating enable; sticky enable
+for_window [app_id=org.keepassxc.KeePassXC] floating enable; sticky enable 
+assign [app_id=pcmanfm] workspace 4
+   floating_modifier $mod normal
+    bindsym $mod+p sticky toggle
+    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+bindsym $mod+1   workspace 1
+bindsym $mod+2   workspace 2
+bindsym $mod+3   workspace 3
+bindsym $mod+4   workspace 4
+bindsym $mod+5   workspace 5
+bindsym $mod+6   workspace 6
+bindsym $mod+7   workspace 7
+bindsym $mod+8   workspace 8
+bindsym $mod+9   workspace 9
+bindsym $mod+0   workspace 10
+bindsym $mod+Shift+1    move container to workspace 1
+bindsym $mod+Shift+2    move container to workspace 2
+bindsym $mod+Shift+3    move container to workspace 3
+bindsym $mod+Shift+4    move container to workspace 4
+bindsym $mod+Shift+5    move container to workspace 5
+bindsym $mod+Shift+6    move container to workspace 6
+bindsym $mod+Shift+7    move container to workspace 7
+bindsym $mod+Shift+8    move container to workspace 8
+bindsym $mod+Shift+9    move container to workspace 9
+bindsym $mod+Shift+0    move container to workspace 10
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+    bindsym $mod+m fullscreen
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+t focus mode_toggle
+    bindsym $mod+a focus parent
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+bar {
+    swaybar_command waybar
+}
+exec swaync
+exec  wlsunset -l -33.3 -L -70.6
+exec pcmanfm -d --desktop-off
+exec wl-paste -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+exec dbus-sway-environment
+exec configure-gtk
+exec emacs --daemon
+include @sysconfdir@/sway/config.d/*
+include ~/.config/sway/config.d/cobaltoNegro
+#include ~/.config/sway/config.d/configMura

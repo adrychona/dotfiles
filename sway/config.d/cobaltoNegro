@@ -1,0 +1,10 @@
+output HDMI-A-1 resolution 2560x1080@60Hz  subpixel rgb
+output * bg  /home/diego/Pictures/Landscape/ultrawide/butterfly.jpg fill
+input * {
+ xkb_layout us,es
+    xkb_options grp:alt_shift_toggle
+}
+for_window [app_id=gsimplecal] floating enable, move absolute position 2265 786;
+
+for_window [app_id=pavucontrol] floating enable, sticky enable, move absolute position 52 337, resize set 500px  1070px;
+

@@ -1,0 +1,76 @@
+#!/bin/sh
+# Simple screenshot script, dependencies: grim, bemenu, imv, jq, slurp
+# Choose directory to save screenshots and viewer
+#define the theme
+menuexec="wofi --dmenu -m all  -p "
+SHOTPATH="/home/diego/Pictures/Screenshots/"
+VIEWER=imv
+
+WINDOWS=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.visible and .pid) | "\(.app_id) \(.rect.x),\(.rect.y) \(.rect.width)x\(.rect.height)"')
+FOCUSED=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.focused and .pid) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')
+
+CHOICE=$($menuexec "Please select screenshot area:" << EOF
+Fullscreen
+Selection
+Focus
+$WINDOWS
+EOF
+)
+#exit if esc was pressed
+if [ $? = 1 ]; then
+    exit
+fi
+FILENAME="${SHOTPATH}screenshot-$(date +'%Y-%m-%d-%H%M%S.png')"
+GRID=\"$(echo $CHOICE | awk ' {print $2,$3} ')
+
+# Name printed when viewing screenshot, adjust if you edit FILENAME"
+FILENAME_SHORT=${FILENAME: -32}
+
+if [ "$CHOICE" = Fullscreen ]
+then
+    grim "$FILENAME"
+elif [ "$CHOICE" = Selection ]
+then
+    grim -g "$(slurp)" "$FILENAME"
+elif [ "$CHOICE" = Focus ]
+then
+    grim -g "$(eval echo $FOCUSED)" "$FILENAME"
+else
+    grim -g "$(eval echo $GRID)" "$FILENAME"
+fi
+
+
+WAHL=$($menuexec "Screenshot taken" << EOF
+View
+Save
+Discard
+EOF
+)
+if [ $? = 1 ]; then
+    WAHL=Discard
+fi
+if [ "$WAHL" = View ]
+then
+	$VIEWER $FILENAME &
+	WAHL2=$($menuexec "${FILENAME_SHORT}"<< EOF
+	Save
+	Discard
+EOF
+)
+	if [ $WAHL2 = Discard ]
+	then
+	        rm $FILENAME &
+	        PID_VIEWER=$(pidof -s ${VIEWER})
+	        kill -9 ${PID_VIEWER}
+	else
+		PID_VIEWER=$(pidof -s ${VIEWER})
+		kill -9 ${PID_VIEWER}
+		true
+	fi
+elif [ "$WAHL" = Discard ]
+then
+	rm $FILENAME
+else
+	true
+fi
+exit 0

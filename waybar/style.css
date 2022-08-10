@@ -1,0 +1,121 @@
+* {
+  border-radius: 0px;
+  font-family: "Jost*,Font Awesome 6 Free Solid, Font Awesome 6 Brands";
+  font-size: 16px;
+
+  min-height: 30px;
+}
+#custom-menu {
+ padding-left:0px;
+  padding-right: 0px;
+
+  background-color: #121212;
+  color: #5294e2;
+  font-family: "TerminessTTF Nerd Font";
+  font-size: 20px;
+}
+window#waybar {
+  background-color: transparent;
+  color: white;
+}
+window > box {
+  background-color: #121212;
+}
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+}
+tooltip label {
+  color: white;
+}
+#bluetooth.discoverable,
+#bluetooth.discovering,
+#bluetooth.pairable #bluetooth.on {
+  color: #ffd500;
+}
+#bluetooth.connected {
+  color: #00ff6a;
+}
+#bluetooth.off {
+  color: #ff003c;
+}
+#workspaces button {
+  padding-left:0px;
+  padding-right: 0px;
+  background-color: #121212;
+  color: white;
+}
+#workspaces button.focused {
+  background-color: #5294e2;
+  color: #272727;
+}
+#mode,
+#idle_inhibitor,
+#battery,
+#bluetooth,
+#pulseaudio,
+#network {
+  padding: 3px;
+  font-family: "TerminessTTF Nerd Font";
+  font-size: 20px;
+}
+#clock,
+#language {
+  font-family: "Jost*";
+  font-size: 20px;
+  padding-top: 5px;
+}
+
+#clock {
+  padding-bottom: 10px;
+}
+
+#bluetooth {
+  font-family: "Font Awesome 6 Free Solid";
+}
+#idle_inhibitor {
+  font-family: "Font Awesome 6 Free Solid";
+  font-size: 17px;
+}
+
+#pulseaudio {
+  font-family: "Font Awesome 6 Free Solid";
+  font-size: 16px;
+}
+
+#custom-notification.notification,
+#custom-notification.dnd-notification {
+  font-family: "TerminessTTF Nerd Font";
+  font-size: 22px;
+}
+#custom-notification.dnd-none,
+#custom-notification.none {
+  font-family: "Font Awesome 6 Free Solid";
+  font-size: 18px;
+}
+
+#mode {
+  background-color: #121212;
+}
+#clock {
+  background-color: #121212;
+  font-family: "Cascadia Code";
+}
+#battery {
+  background-color: #121212;
+  color: #ffffff;
+}
+#battery.charging {
+  color: green;
+  background-color: #272727;
+}
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: black;
+  }
+}
+#idle_inhibitor.activated,
+#language,
+#keyboard-state label.locked {
+  color: #ff0071;
+}
