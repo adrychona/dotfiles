@@ -1,6 +1,5 @@
 { config, pkgs, ... }: {
   config = {
-    nixpkgs.config.allowUnfree = true;
     environment.systemPackages = with pkgs; [
       ##Plugins
       ##LV2
@@ -51,8 +50,11 @@
       nova-filters
       tap-plugins
       zam-plugins
+      calf
       ##utilities
+      ##
       ardour
+      zyn-fusion
       carla
       hydrogen
       tenacity

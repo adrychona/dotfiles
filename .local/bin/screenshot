@@ -2,7 +2,7 @@
 # Simple screenshot script, dependencies: grim, bemenu, imv, jq, slurp
 # Choose directory to save screenshots and viewer
 #define the theme
-menuexec="wofi --dmenu -m all  -p "
+menuexec="rofi -dmenu -m all  -p "
 SHOTPATH="/home/diego/Pictures/Screenshots/"
 VIEWER=imv
 

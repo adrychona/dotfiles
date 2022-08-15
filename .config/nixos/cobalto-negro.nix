@@ -26,7 +26,7 @@
       "rd.udev.log_level=0"
       "udev.log_priority=0"
     ];
-    plymouth = { enable = true; };
+    plymouth = { enable = false; };
     supportedFilesystems = [ "zfs" ];
     zfs.devNodes = "/dev/";
     consoleLogLevel = 0;

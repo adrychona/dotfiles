@@ -9,7 +9,6 @@
     "id": "bar-0",
     "modules-center": [],
     "modules-right": [
-      "custom/notification",
       "bluetooth",
       "pulseaudio",
       "network",
@@ -20,10 +19,7 @@
     "sway/window": {
       "max-length": 50
     },
-    "custom/menu": {
-      "on-click": "wofi --show drun",
-      "format": " "
-    },
+
     "battery": {
       "format": "{icon}",
       "format-icons": [
@@ -107,7 +103,8 @@
       "format-disabled": "",
       "format-on": "",
       "format-off": "",
-      "format-connected": ""
+      "format-connected": "",
+      "on-click":"$XDG_CONFIG_HOME/sway/scripts/bluetooth"
     },
     "idle_inhibitor": {
       "format": "{icon}",
@@ -116,32 +113,6 @@
         "deactivated": ""
       }
     },
-    "custom/notification": {
-      "tooltip": false,
-      "format": "{icon}",
-      "format-icons": {
-        "notification": "<span foreground='#ff0071'><sup></sup></span>",
-        "none": "",
-        "dnd-notification": "<span foreground='#ff0071'><sup></sup></span>",
-        "dnd-none": ""
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "on-click-right": "swaync-client -d -sw",
-      "escape": true
-    },
-
-"keyboard-state": {
-    "numlock": false,
-    "capslock": true,
-    "format": "{icon}",
-    "format-icons": {
-        "locked": "",
-        "unlocked": ""
-    }
-},
 "sway/mode": {
     "format": " {}",
     "max-length": 50

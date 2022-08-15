@@ -1,6 +1,3 @@
-input * {
-    xkb_layout "es"
-}
 input type:touchpad {
     tap enabled
     natural_scroll enabled

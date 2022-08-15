@@ -11,6 +11,19 @@ let
       systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     '';
   };
+  sway-polkit = pkgs.writeTextFile {
+    name = "sway-polkit";
+    destination = "/bin/sway-polkit";
+    executable = true;
+
+    text = ''
+
+      exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+
+    '';
+
+  };
+
   configure-gtk = pkgs.writeTextFile {
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
@@ -44,29 +57,30 @@ in {
   environment.etc = {
     "greetd/environments".text = ''
       sway
+      wayfire
       fish
     '';
   };
+  security.polkit.enable = true;
   qt5.enable = true;
   qt5.style = "gtk2";
   qt5.platformTheme = "gtk2";
   environment.systemPackages = with pkgs; [
+    polkit
+    polkit_gnome
     capitaine-cursors
+    sway-polkit
     clipman
     configure-gtk
     dbus-sway-environment
     firefox-wayland
-    geany
     glib
     greetd.gtkgreet
     grim
-    gsimplecal
     imv
     kitty
     materia-theme
-    whitesur-icon-theme
     mpv
-    neovide
     papirus-icon-theme
     pavucontrol
     pcmanfm
@@ -75,13 +89,12 @@ in {
     sway
     swayidle
     swaylock-effects
-    swaynotificationcenter
+    mako
     transmission-gtk
     waybar
     wayland
     wl-clipboard
     wlsunset
-    wofi
     xarchiver
     zathura
   ];
@@ -93,6 +106,7 @@ in {
     noto-fonts-emoji
     source-han-mono
     source-han-sans
+    source-sans
   ];
 
   sound.enable = false;
