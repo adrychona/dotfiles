@@ -38,7 +38,7 @@ icons[shutdown]="\uf011"
 icons[cancel]="\u00d7"
 
 declare -A actions
-actions[lockscreen]="${XDG_CONFIG_HOME}/sway/scripts/lock"
+actions[lockscreen]="lock"
 #actions[switchuser]="???"
 actions[logout]="loginctl terminate-session ${XDG_SESSION_ID-}"
 actions[suspend]="systemctl suspend"

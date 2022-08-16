@@ -1,7 +1,5 @@
-
 # Visualizer
 #
-lyrics_directory = ~/.config/ncmpcpp/lyrics
 visualizer_output_name = "my_fifo"
 #visualizer_type = "wave" (spectrum/wave)
 visualizer_type = "spectrum" (spectrum/wave)
@@ -37,8 +35,9 @@ statusbar_color = "black"
 visualizer_color = 28
 user_interface = "alternative"
 # Others
-mpd_music_dir = "/home/jon/music/"
+mpd_music_dir = "$HOME/Music/"
 mpd_crossfade_time = "5"
 #song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
 search_engine_display_mode = "columns" (classic/columns)
 follow_now_playing_lyrics = "yes"
+execute_on_song_change = songinfo
