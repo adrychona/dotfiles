@@ -15,6 +15,8 @@
     ];
   };
   environment.variables = {
+    TRANSMISSION_HOME =
+      "${config.services.transmission.home}/.config/transmission-daemon";
     GTK2_RC_FILES =
       "${config.environment.sessionVariables.XDG_CONFIG_HOME}/gtk-2.0/gtkrc";
     HISTFILE =

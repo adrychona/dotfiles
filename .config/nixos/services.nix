@@ -16,6 +16,7 @@
         openRPCPort = true;
         rpc-bind-adress = "0.0.0.0";
         watch-dir-enabled = true;
+        watch-dir = "${config.users.users.diego.home}/Downloads";
         downloadDirPermissions = "770";
         umask = 18;
         trash-original-torrent-files = true;

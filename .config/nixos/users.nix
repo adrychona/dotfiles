@@ -4,6 +4,7 @@
     isNormalUser = true;
     extraGroups = [
       "input"
+      "audio"
       "wheel"
       "video"
       "networkmanager"
@@ -14,6 +15,14 @@
     ];
     shell = pkgs.fish;
     description = "Diego Barros";
+  };
+
+  xdg.mime.addedAssociations = {
+    "text/plain" = "userapp-emacsclient -c -a emacs-YBB0Q1.desktop";
+  };
+
+  xdg.mime.defaultApplications = {
+    "text/plain" = "userapp-emacsclient -c -a emacs-YBB0Q1.desktop";
   };
   programs.fish = {
     enable = true;

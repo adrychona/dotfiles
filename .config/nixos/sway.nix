@@ -66,10 +66,7 @@ in {
   qt5.style = "gtk2";
   qt5.platformTheme = "gtk2";
   environment.systemPackages = with pkgs; [
-    polkit
-    polkit_gnome
     capitaine-cursors
-    sway-polkit
     clipman
     configure-gtk
     dbus-sway-environment
@@ -79,17 +76,21 @@ in {
     grim
     imv
     kitty
+    mako
     materia-theme
     mpv
     papirus-icon-theme
     pavucontrol
     pcmanfm
+    polkit
+    polkit_gnome
     rofi-wayland
     slurp
     sway
+    sway-polkit
     swayidle
     swaylock-effects
-    mako
+    thunderbird-wayland
     transmission-gtk
     waybar
     wayland
