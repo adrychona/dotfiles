@@ -21,7 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Cascadia Code" :size 15 :weight 'semi-light)
+(setq doom-font (font-spec :family "Cascadia Code" :size 14 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "Jost*" :size 13))
 ;;(setq fancy-splash-image "/home/diego/Pictures/computerRelated/emacs/catffe.png")
 ;;

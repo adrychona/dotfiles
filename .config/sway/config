@@ -125,10 +125,11 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 bar {
     swaybar_command waybar
-}
+    }
+
+bindsym $mod+r mode "resize"
 exec mako
 exec  wlsunset -l -33.3 -L -70.6
 exec pcmanfm -d --desktop-off
@@ -144,5 +145,5 @@ exec swayidle -w \
 	resume 'swaymsg "output * dpms on"' \
 before-sleep 'swaylock'
 include @sysconfdir@/sway/config.d/*
-include ~/.config/sway/config.d/cobaltoNegro
-#include ~/.config/sway/config.d/configMura
+#include ~/.config/sway/config.d/cobaltoNegro
+include ~/.config/sway/config.d/amatista-gris

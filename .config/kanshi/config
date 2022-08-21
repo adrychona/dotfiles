@@ -1,11 +1,8 @@
 profile undocked {
-		output eDP-1 scale 1.7
-
-    exec "pkill waybar; waybar -c /home/diego/.config/waybar/config.d/amatista-gris.undocked"
+            output eDP-1 scale 1.6
 }
 
 profile docked {
 	output eDP-1 scale 1.7 position 1280,1080
 	output DP-1  position 0,0 
-    exec "pkill waybar; waybar -c /home/diego/.config/waybar/config.d/amatista-gris.docked"
 }

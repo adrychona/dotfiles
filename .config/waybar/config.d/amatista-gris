@@ -1,0 +1,120 @@
+  {
+    "modules-left": [
+      "sway/workspaces"
+    ],
+    "layer": "top",
+    "position": "bottom",
+    "output": "eDP-1",
+    "id": "bar-1",
+    "modules-center": [],
+    "modules-right": [
+      "bluetooth",
+      "pulseaudio",
+      "network",
+      "idle_inhibitor",
+      "battery",
+      "sway/language",
+      "clock"
+    ],
+    "sway/window": {
+      "max-length": 50
+    },
+
+    "battery": {
+      "format": "{icon}",
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "tooltip-format": "%{capacity}, {time}"
+    },
+    "clock": {
+      "format": "{:%H\n%M}",
+      "interval": 1,
+      "on-click": "gsimplecal"
+    },
+    "clock#date": {
+      "format": "{:%A %d, %B %Y}"
+    },
+    "sway/language": {
+      "format": "{short}",
+      "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    },
+    "sway/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "9": "",
+        "10": "",
+        "urgent": "",
+        "focused": "",
+        "default": ""
+      },
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "9": [],
+        "10": []
+      }
+    },
+    "network": {
+      "interface": "enp6s0",
+      "format": "{ifname}",
+      "format-wifi": "",
+      "format-ethernet": " ",
+      "tooltip-format": "{ifname} via {gwaddr}",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+      "tooltip-format-ethernet": "{ifname} ",
+      "tooltip-format-disconnected": "Disconnected",
+      "max-length": 50
+    },
+    "pulseaudio": {
+      "format": "{icon}",
+      "format-bluetooth": "{icon}",
+      "format-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [
+          "",
+          ""
+        ]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol"
+    },
+    "bluetooth": {
+      "controller": "00:E0:4C:6A:BE:03",
+      "format": "",
+      "format-disabled": "",
+      "format-on": "",
+      "format-off": "",
+      "format-connected": "",
+      "on-click":"$XDG_CONFIG_HOME/sway/scripts/bluetooth"
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+"sway/mode": {
+    "format": " {}",
+    "max-length": 50
+}
+  }

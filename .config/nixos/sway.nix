@@ -75,6 +75,7 @@ in {
     greetd.gtkgreet
     grim
     imv
+    kanshi
     kitty
     mako
     materia-theme
