@@ -1,7 +1,8 @@
 [
   {
 "include": [
-"/home/diego/.config/waybar/config.d/amatista-gris"
-],
+/**"/home/diego/.config/waybar/config.d/amatista-gris",**/
+"/home/diego/.config/waybar/config.d/cobalto-negro"
+]
 }
 ]

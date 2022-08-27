@@ -58,8 +58,8 @@
         format = "[$user ]($style)";
       };
       character = {
-        success_symbol = "[==>](bold green)";
-        error_symbol = "[<==](bold red)";
+        success_symbol = "[|>](bold green)";
+        error_symbol = "[x](bold red)";
         vicmd_symbol = "[I](bold green)";
       };
       time = {

@@ -8,28 +8,13 @@
 
       configDir = "/home/diego/.config/syncthing";
     };
-    #   transmission = {
-    #   user = "diego";
-    #   enable = true;
-    #   home = "/mnt/mainStorage/transmission";
-    #   settings = {
-    #     openRPCPort = true;
-    #     rpc-bind-adress = "0.0.0.0";
-    #     watch-dir-enabled = true;
-    #     watch-dir = "${config.users.users.diego.home}/Downloads";
-    #     downloadDirPermissions = "770";
-    #     umask = 18;
-    #     trash-original-torrent-files = true;
-    #     credentialsFile =
-    #       "/mnt/mainStorage/transmission/.secrets/credentials.json";
-    #   };
-    # };
     printing = {
       enable = true;
       drivers = [ pkgs.brlaser ];
     };
     openssh.enable = true;
     gvfs.enable = true;
+
     devmon.enable = true;
     usbmuxd.enable = true;
     gnome.gnome-keyring.enable = true;

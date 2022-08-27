@@ -15,7 +15,7 @@ default_border pixel 2
         default_floating_border pixel 2
         hide_edge_borders smart
         smart_borders on
-        gaps inner 0
+        gaps inner 5
         gaps outer 0
 seat seat0 xcursor_theme "capitaine-cursors" 32
 set $cl_high #8AB4F8
@@ -145,5 +145,5 @@ exec swayidle -w \
 	resume 'swaymsg "output * dpms on"' \
 before-sleep 'swaylock'
 include @sysconfdir@/sway/config.d/*
-#include ~/.config/sway/config.d/cobaltoNegro
-include ~/.config/sway/config.d/amatista-gris
+include ~/.config/sway/config.d/cobalto-negro
+#include ~/.config/sway/config.d/amatista-gris

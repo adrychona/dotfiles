@@ -1,28 +1,25 @@
 * {
-  border-radius: 0px;
   font-family: "Jost*,Font Awesome 6 Free Solid, Font Awesome 6 Brands";
-  font-size: 16px;
+  font-size: 17px;
+  min-width: 40px;
 
-  min-height: 30px;
-}
-#custom-menu {
- padding-left:0px;
-  padding-right: 0px;
 
-  background-color: #121212;
-  color: #5294e2;
-  font-family: "TerminessTTF Nerd Font";
-  font-size: 20px;
 }
 window#waybar {
   background-color: transparent;
   color: white;
+
 }
 window > box {
   background-color: #121212;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+
 }
 tooltip {
-  background: rgba(43, 48, 59, 0.5);
+  background: rgba(43, 48, 59, 0.95);
 }
 tooltip label {
   color: white;
@@ -41,14 +38,21 @@ tooltip label {
 #workspaces button {
   padding-left:0px;
   padding-right: 0px;
+  padding-top:9px;
+
+  padding-bottom:9px;
   background-color: #121212;
   color: white;
+
 }
 #workspaces button.focused {
-  background-color:  #8AB4F8;
-  color: #272727;
+  color:  #8AB4F8;
+  background: #272727;
+   border-left: 2px solid  #8AB4F8;
+   border-radius: 0px;
 }
-#mode,
+
+ #mode,
 #idle_inhibitor,
 #battery,
 #bluetooth,
@@ -58,15 +62,10 @@ tooltip label {
   font-family: "TerminessTTF Nerd Font";
   font-size: 20px;
 }
-#clock,
 #language {
   font-family: "Jost*";
   font-size: 20px;
   padding-top: 5px;
-}
-
-#clock {
-  padding-bottom: 10px;
 }
 
 #bluetooth {
@@ -81,24 +80,16 @@ tooltip label {
   font-family: "Font Awesome 6 Free Solid";
   font-size: 16px;
 }
-
-#custom-notification.notification,
-#custom-notification.dnd-notification {
-  font-family: "TerminessTTF Nerd Font";
-  font-size: 22px;
-}
-#custom-notification.dnd-none,
-#custom-notification.none {
-  font-family: "Font Awesome 6 Free Solid";
-  font-size: 18px;
-}
-
 #mode {
   background-color: #121212;
 }
 #clock {
   background-color: #121212;
-  font-family: "Cascadia Code";
+  font-size:22px;
+
+  font-family: "Jost*";
+
+  padding-bottom: 10px;
 }
 #battery {
   background-color: #121212;
@@ -106,6 +97,7 @@ tooltip label {
 }
 #battery.charging {
   color: green;
+
   background-color: #272727;
 }
 @keyframes blink {

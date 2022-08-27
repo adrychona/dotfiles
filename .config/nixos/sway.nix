@@ -11,6 +11,13 @@ let
       systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     '';
   };
+  flake-compat = builtins.fetchTarball
+    "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+  hyprland = (import flake-compat {
+    src = builtins.fetchTarball
+      "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+
   sway-polkit = pkgs.writeTextFile {
     name = "sway-polkit";
     destination = "/bin/sway-polkit";
@@ -43,6 +50,16 @@ let
     '';
   };
 in {
+  imports = [ hyprland.nixosModules.default ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    })
+  ];
+
   services.greetd = {
     enable = true;
     settings = {
@@ -66,6 +83,7 @@ in {
   qt5.style = "gtk2";
   qt5.platformTheme = "gtk2";
   environment.systemPackages = with pkgs; [
+    swaybg
     capitaine-cursors
     clipman
     configure-gtk
@@ -101,7 +119,6 @@ in {
     zathura
   ];
   fonts.fonts = with pkgs; [
-    cascadia-code
     font-awesome
     jost
     nerdfonts
@@ -109,6 +126,7 @@ in {
     source-han-mono
     source-han-sans
     source-sans
+    fantasque-sans-mono
   ];
 
   sound.enable = false;
@@ -131,5 +149,8 @@ in {
     enable = true;
     wrapperFeatures.gtk = true;
   };
-
+  programs.hyprland = {
+    enable = true;
+    package = hyprland.packages.${pkgs.system}.default;
+  };
 }
