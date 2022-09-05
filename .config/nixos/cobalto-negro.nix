@@ -11,6 +11,7 @@
     ./terminal.nix
     ./users.nix
     ./emacs.nix
+    ./virtmanager.nix
     /etc/nixos/hardware-configuration-zfs.nix
   ];
   system.autoUpgrade.enable = true;

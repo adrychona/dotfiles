@@ -75,9 +75,9 @@
     }}
      @media (prefers-color-scheme: light) { :root {
 
-        --window-colour:                     #FAFAFC;
-        --secondary-colour:                  #EAEAEC;
-        --inverted-colour:                   #1E2021;
+        --window-colour:                     #F9f9f9;
+        --secondary-colour:                  #ebebeb;
+        --inverted-colour:                   #121212;
 
         /* Containter Tab Colours */
         --uc-identity-colour-blue:            #1D65F5;

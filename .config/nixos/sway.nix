@@ -30,7 +30,6 @@ let
     '';
 
   };
-
   configure-gtk = pkgs.writeTextFile {
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
@@ -39,16 +38,26 @@ let
       schema = pkgs.gsettings-desktop-schemas;
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Materia-dark'
-      gsettings set $gnome_schema icon-theme 'Papirus-Dark'
-      gsettings set $gnome_schema cursor-theme 'capitaine-cursors'
-      gsettings set $gnome_schema font-name 'Jost* 12'
-      gsettings set $gnome_schema cursor-size 32
+          currenttime=$(date +%H:%M)
 
+            gnome_schema=org.gnome.desktop.interface
+            export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+          if [[ "$currenttime" > "19:30" ]] || [[ "$currenttime" < "06:00" ]]; then
+            gsettings set $gnome_schema gtk-theme 'Materia-dark'
+            gsettings set $gnome_schema icon-theme 'Papirus-Dark'
+            gsettings set $gnome_schema cursor-theme 'capitaine-cursors'
+            gsettings set $gnome_schema font-name 'Jost* 12'
+            gsettings set $gnome_schema cursor-size 32
+      else
+        gsettings set $gnome_schema gtk-theme 'Materia-light'
+            gsettings set $gnome_schema icon-theme 'Papirus-Light'
+            gsettings set $gnome_schema cursor-theme 'capitaine-cursors-white'
+            gsettings set $gnome_schema font-name 'Jost* 12'
+            gsettings set $gnome_schema cursor-size 32
+      fi
     '';
   };
+
 in {
   imports = [ hyprland.nixosModules.default ];
 

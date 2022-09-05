@@ -46,6 +46,7 @@
     libimobiledevice
     ifuse # optional, to mount using 'ifuse'
   ];
+  services.flatpak.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.package = pkgs.bluez5-experimental;
   systemd.services.mpd.environment = {
