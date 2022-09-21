@@ -4,10 +4,12 @@
   min-width: 40px;
 
 
+  border-radius: 10px;
 }
 window#waybar {
   background-color: transparent;
   color: white;
+
 
 }
 window > box {
@@ -36,6 +38,7 @@ tooltip label {
   color: #ff003c;
 }
 #workspaces button {
+
   padding-left:0px;
   padding-right: 0px;
   padding-top:9px;
@@ -49,18 +52,17 @@ tooltip label {
   color:  #1967D2;
   background: #ebebeb;
    border-left: 2px solid  #1967D2;
-   border-radius: 0px;
 }
 
  #mode,
 #idle_inhibitor,
-#battery,
 #bluetooth,
 #pulseaudio,
 #network {
   padding: 3px;
   font-family: "TerminessTTF Nerd Font";
   font-size: 20px;
+  color:#121212;
 }
 #language {
   font-family: "Jost*";
@@ -92,13 +94,14 @@ tooltip label {
   color:#121212;
 }
 #battery {
-  background-color: #121212;
-  color: #ffffff;
+  color: #121212;
+  background-color: #f9f9f9;
+
+  font-size: 22px;
 }
 #battery.charging {
-  color: green;
+  color: #00b046;
 
-  background-color: #272727;
 }
 @keyframes blink {
   to {

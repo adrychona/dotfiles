@@ -175,7 +175,7 @@
        web               ; the tubes
        ;;yaml              ; JSON, but readable
        ;;zig               ; C, but simpler
-(with-eval-after-load 'typescript-mode (add-hook 'typescript-mode-hook #'lsp))
+;;(with-eval-after-load 'typescript-mode (add-hook 'typescript-mode-hook #'lsp))
        :email
        ;;(mu4e +org +gmail)
        ;;notmuch
@@ -192,3 +192,7 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+;;; add to $DOOMDIR/init.el
+(defadvice! fixed-doom-module-list (fn &rest args)
+  :around #'doom-module-list
+  (nreverse (apply fn args)))

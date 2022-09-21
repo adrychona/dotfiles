@@ -1,5 +1,6 @@
   {
     "modules-left": [
+    "custom/spacer",
       "sway/workspaces"
     ],
     "layer": "bottom",
@@ -40,6 +41,9 @@
     "clock#date": {
       "format": "{:%A %d, %B %Y}"
     },
+"custom/spacer": {
+    "format": " ",
+},
     "sway/language": {
       "format": "{short}",
       "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
@@ -69,7 +73,7 @@
       }
     },
     "network": {
-      "interface": "enp6s0",
+      "interface": "enp5s0",
       "format": "{ifname}",
       "format-wifi": "",
       "format-ethernet": " ",

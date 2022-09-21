@@ -4,6 +4,7 @@
   min-width: 40px;
 
 
+  border-radius:5px;
 }
 window#waybar {
   background-color: transparent;
@@ -12,10 +13,11 @@ window#waybar {
 }
 window > box {
   background-color: #121212;
-  margin-left: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5px 0px 5px 5px;
+}
+#custom-spacer{
 
+font-size: 5px;
 
 }
 tooltip {
@@ -36,11 +38,7 @@ tooltip label {
   color: #ff003c;
 }
 #workspaces button {
-  padding-left:0px;
-  padding-right: 0px;
-  padding-top:9px;
-
-  padding-bottom:9px;
+  padding:9px 0px 9px 0px;
   background-color: #121212;
   color: white;
 
@@ -54,22 +52,23 @@ tooltip label {
 
  #mode,
 #idle_inhibitor,
-#battery,
 #bluetooth,
 #pulseaudio,
 #network {
   padding: 3px;
   font-family: "TerminessTTF Nerd Font";
   font-size: 20px;
+  padding: 7px 4px 7px 4px;
 }
 #language {
   font-family: "Jost*";
   font-size: 20px;
-  padding-top: 5px;
+  padding: 5px;
 }
 
 #bluetooth {
   font-family: "Font Awesome 6 Free Solid";
+
 }
 #idle_inhibitor {
   font-family: "Font Awesome 6 Free Solid";

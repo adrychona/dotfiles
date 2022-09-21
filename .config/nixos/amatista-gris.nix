@@ -36,7 +36,6 @@
       efi.efiSysMountPoint = "/boot";
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_zen;
   };
   networking.hostName = "amatista-gris";
   networking.useDHCP = false;
@@ -60,4 +59,5 @@
     "/nix".options = [ "compress=zstd" "noatime" ];
   };
   services.tlp.enable = true;
+  environment.systemPackages = with pkgs; [ linux-firmware ];
 }

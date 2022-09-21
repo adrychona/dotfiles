@@ -4,7 +4,7 @@ set $down j
 set $up k
 set $right l
 set $term kitty -1 
-set $menu rofi -show drun -show-icons -icon-theme "Papirus-Dark"
+set $menu rofi -show drun
 font pango:Jost* 14
 input * {
  xkb_layout "us,es"
@@ -40,38 +40,18 @@ client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
     bindsym $mod+f exec firefox 
     bindsym $mod+e exec pcmanfm
     bindsym $mod+d exec emacsclient -c -a emacs
-    bindsym $mod+x exec rofi -show p -modi p:powermenu
 bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
 bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
 bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 for_window [title="Picture-in-Picture"] floating enable; sticky enable
 for_window [app_id=org.keepassxc.KeePassXC] floating enable; sticky enable 
 assign [app_id=pcmanfm] workspace 4
+assign [app_id=firefox] workspace 1
    floating_modifier $mod normal
     bindsym $mod+p sticky toggle
     bindsym $mod+Shift+c reload
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    set $nag exec swaynagmode
-mode "nag" {
-  bindsym {
-    Ctrl+d    mode "default"
 
-    Ctrl+c    $nag --exit
-    q         $nag --exit
-    Escape    $nag --exit
-
-    Return    $nag --confirm
-
-    Tab       $nag --select prev
-    Shift+Tab $nag --select next
-
-    Left      $nag --select next
-    Right     $nag --select prev
-
-    Up        $nag --select next
-    Down      $nag --select prev
-  }
-}
+    bindsym $mod+Shift+e exec rofi -show p -modi p:powermenu
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
@@ -130,8 +110,10 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bar {
-    swaybar_command waybar-dn
-    }
+    swaybar_command waybar
+
+}
+
 
 bindsym $mod+r mode "resize"
 exec mako
@@ -141,7 +123,6 @@ exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/state/clipman-primary.json"
 exec dbus-sway-environment
 exec configure-gtk
-exec emacs --daemon
 exec --no-startup-id sway-polkit
 exec swayidle -w \
 	timeout 1800 'swaylock -f' \

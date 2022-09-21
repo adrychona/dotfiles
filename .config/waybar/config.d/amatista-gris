@@ -3,9 +3,9 @@
       "sway/workspaces"
     ],
     "layer": "top",
-    "position": "bottom",
+    "position": "left",
     "output": "eDP-1",
-    "id": "bar-1",
+    "id": "amatistaMain",
     "modules-center": [],
     "modules-right": [
       "bluetooth",

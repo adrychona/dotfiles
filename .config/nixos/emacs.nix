@@ -1,20 +1,42 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, callPackage, ... }: {
 
-{
   services.emacs = {
-    package = pkgs.emacsPgtkGcc;
-    install = true;
-    defaultEditor = true;
+    package = pkgs.emacsPgtkNativeComp;
     enable = true;
   };
-
   nixpkgs.overlays = [
-    (import (builtins.fetchGit {
-      url = "https://github.com/nix-community/emacs-overlay.git";
-      ref = "master";
-      rev = "bfc8f6edcb7bcf3cf24e4a7199b3f6fed96aaecf"; # change the revision
+    (import (builtins.fetchTarball {
+      url =
+        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
     }))
   ];
 
-  environment.systemPackages = with pkgs; [ emacsPgtkGcc ];
+  environment.systemPackages = with pkgs; [
+    ##Fundamentals
+    ripgrep
+    fd
+    fzf
+    ##formating
+
+    shellcheck
+    black
+    shfmt
+    ##utils
+    ##Python
+    python39Packages.pyflakes
+    python39Packages.isort
+    pipenv
+    python39Packages.nose
+    python39Packages.pytest
+    python39Packages.setuptools
+    ###MarkDown
+    pandoc
+    ###HTML
+    html-tidy
+    ###CSS
+    nodePackages.stylelint
+    ###CSS
+    nodePackages.js-beautify
+
+  ];
 }

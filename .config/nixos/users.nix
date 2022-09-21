@@ -17,6 +17,8 @@
     description = "Diego Barros";
   };
 
+
+
   xdg.mime.addedAssociations = {
     "text/plain" = "userapp-emacsclient -c -a emacs-YBB0Q1.desktop";
   };

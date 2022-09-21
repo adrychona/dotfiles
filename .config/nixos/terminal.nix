@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }: {
   config = {
     environment.systemPackages = with pkgs; [
-
       bluez-tools
       brightnessctl
       btop
@@ -13,11 +12,9 @@
       exa
       fdupes
       ffmpeg
-      fzf
       git
       glow
       gping
-      helix
       imagemagick
       jq
       libnotify

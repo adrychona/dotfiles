@@ -10,9 +10,8 @@
     ./sway.nix
     ./terminal.nix
     ./users.nix
-    ./emacs.nix
     ./virtmanager.nix
-    /etc/nixos/hardware-configuration-zfs.nix
+    ./emacs.nix
   ];
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
@@ -27,39 +26,42 @@
       "rd.udev.log_level=0"
       "udev.log_priority=0"
     ];
-    plymouth = { enable = false; };
-    supportedFilesystems = [ "zfs" ];
-    zfs.devNodes = "/dev/";
+    plymouth = {
+
+      enable = true;
+      theme = "solar";
+    };
     consoleLogLevel = 0;
     initrd.verbose = false;
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
-        editor = false;
+        device = "nodev";
+
+     efiSupport = true;
       };
       timeout = 0;
-      efi.efiSysMountPoint = "/boot";
+      efi.efiSysMountPoint = "/boot/efi";
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_zen;
-    kernelModules = [ "i2c-dev" ];
   };
   networking.hostName = "cobalto-negro";
   networking.hostId = "8556b001";
   networking.useDHCP = false;
-  networking.interfaces.enp6s0.useDHCP = true;
+  networking.interfaces.enp5s0.useDHCP = true;
   time.timeZone = "America/Santiago";
   i18n.defaultLocale = "en_US.UTF-8";
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  # ...
   console = { keyMap = "us"; };
-  #HW Specific
   hardware.i2c.enable = true;
-  services.zfs = {
-    trim.enable = true;
-    autoScrub.enable = true;
-    autoScrub.pools = [ "rpool" ];
-  };
+  environment.systemPackages = [pkgs.linux-firmware];
+  fileSystems = {
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+    "/nix".options = [ "compress=zstd" "noatime" ];
 
+    "/swap".options = [ "noatime" ];
+  };
+swapDevices = [ { device = "/swap/swapfile"; } ];
 }

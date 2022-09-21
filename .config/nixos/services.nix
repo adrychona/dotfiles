@@ -3,9 +3,7 @@
     syncthing = {
       enable = true;
       user = "diego";
-
       dataDir = "/home/diego";
-
       configDir = "/home/diego/.config/syncthing";
     };
     printing = {
@@ -14,7 +12,6 @@
     };
     openssh.enable = true;
     gvfs.enable = true;
-
     devmon.enable = true;
     usbmuxd.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -34,26 +31,22 @@
                format          "44100:16:2"
         }
       '';
-
-      # Optional:
-      network.listenAddress =
-        "any"; # if you want to allow non-localhost connections
-      #  startWhenNeeded = true; # systemd feature: only start MPD service upon connection to its socket
+     
+      network.listenAddress = "any";
+      startWhenNeeded = true;
     };
+ transmission = {
+        enable = true;
+        home = "/home/diego/Downloads/Torrenting";
+        settings.watch-dir = "/home/diego/Downloads";
 
+      };
   };
-  environment.systemPackages = with pkgs; [
-    libimobiledevice
-    ifuse # optional, to mount using 'ifuse'
-  ];
-  services.flatpak.enable = true;
+  environment.systemPackages = with pkgs; [ libimobiledevice ifuse ];
+
   hardware.bluetooth.enable = true;
   hardware.bluetooth.package = pkgs.bluez5-experimental;
-  systemd.services.mpd.environment = {
-    # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
-    XDG_RUNTIME_DIR =
-      "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
-  };
+  systemd.services.mpd.environment = { XDG_RUNTIME_DIR = "/run/user/1000"; };
 
 }
 

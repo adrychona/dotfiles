@@ -11,13 +11,6 @@ let
       systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     '';
   };
-  flake-compat = builtins.fetchTarball
-    "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
-  hyprland = (import flake-compat {
-    src = builtins.fetchTarball
-      "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
-  }).defaultNix;
-
   sway-polkit = pkgs.writeTextFile {
     name = "sway-polkit";
     destination = "/bin/sway-polkit";
@@ -38,37 +31,21 @@ let
       schema = pkgs.gsettings-desktop-schemas;
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in ''
-          currenttime=$(date +%H:%M)
+      gnome_schema=org.gnome.desktop.interface
+      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+      gsettings set $gnome_schema gtk-theme 'Materia-dark'
+      gsettings set $gnome_schema icon-theme 'Papirus-Dark'
+      gsettings set $gnome_schema cursor-theme 'capitaine-cursors-white'
+      gsettings set $gnome_schema font-name 'Jost* 12'
+      gsettings set $gnome_schema cursor-size 32
 
-            gnome_schema=org.gnome.desktop.interface
-            export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-          if [[ "$currenttime" > "19:30" ]] || [[ "$currenttime" < "06:00" ]]; then
-            gsettings set $gnome_schema gtk-theme 'Materia-dark'
-            gsettings set $gnome_schema icon-theme 'Papirus-Dark'
-            gsettings set $gnome_schema cursor-theme 'capitaine-cursors'
-            gsettings set $gnome_schema font-name 'Jost* 12'
-            gsettings set $gnome_schema cursor-size 32
-      else
-        gsettings set $gnome_schema gtk-theme 'Materia-light'
-            gsettings set $gnome_schema icon-theme 'Papirus-Light'
-            gsettings set $gnome_schema cursor-theme 'capitaine-cursors-white'
-            gsettings set $gnome_schema font-name 'Jost* 12'
-            gsettings set $gnome_schema cursor-size 32
-      fi
     '';
   };
 
 in {
-  imports = [ hyprland.nixosModules.default ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-  ];
-
+  qt5.style = "gtk2";
+  qt5.enable = true;
+  qt5.platformTheme = "gtk2";
   services.greetd = {
     enable = true;
     settings = {
@@ -83,16 +60,13 @@ in {
   environment.etc = {
     "greetd/environments".text = ''
       sway
-      wayfire
       fish
     '';
   };
   security.polkit.enable = true;
-  qt5.enable = true;
-  qt5.style = "gtk2";
-  qt5.platformTheme = "gtk2";
   environment.systemPackages = with pkgs; [
     swaybg
+    libsForQt5.qtstyleplugin-kvantum
     capitaine-cursors
     clipman
     configure-gtk
@@ -113,6 +87,7 @@ in {
     polkit
     polkit_gnome
     rofi-wayland
+    wofi
     slurp
     sway
     sway-polkit
@@ -157,9 +132,15 @@ in {
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-  };
-  programs.hyprland = {
-    enable = true;
-    package = hyprland.packages.${pkgs.system}.default;
+    extraSessionCommands = ''
+
+      export SDL_VIDEODRIVER=wayland
+        # QT (needs qt5.qtwayland in systemPackages):
+        export QT_QPA_PLATFORM=wayland-egl
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+        # Fix for some Java AWT applications (e.g. Android Studio),
+        # use this if they aren't displayed properly:
+        export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
   };
 }

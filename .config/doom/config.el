@@ -35,12 +35,12 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-m0w0kai-pro)
 (custom-theme-set-faces! 'doom-m0w0kai-pro
-  '(doom-dashboard-banner :foreground "#FFB3F7" :weight bold )
-  '(doom-dashboard-footer :inherit font-lock-constant-face)
-  '(doom-dashboard-footer-icon :inherit all-the-icons-red)
-  '(doom-dashboard-loaded :inherit font-lock-warning-face)
-  '(doom-dashboard-menu-desc :inherit font-lock-string-face)
-  '(doom-dashboard-menu-title :inherit font-lock-function-name-face))
+ '(doom-dashboard-banner :foreground "#FFB3F7" :weight bold )
+ '(doom-dashboard-footer :inherit font-lock-constant-face)
+ '(doom-dashboard-footer-icon :inherit all-the-icons-red)
+ '(doom-dashboard-loaded :inherit font-lock-warning-face)
+ '(doom-dashboard-menu-desc :inherit font-lock-string-face)
+ '(doom-dashboard-menu-title :inherit font-lock-function-name-face))
 (defun doom-dashboard-draw-ascii-banner-fn ()
   (let* ((banner
           '(
