@@ -7,6 +7,7 @@
       ifuse
       exfatprogs
       ntfs3g
+      android-tools
     ];
     programs.adb.enable = true;
     services.usbmuxd.enable = true;

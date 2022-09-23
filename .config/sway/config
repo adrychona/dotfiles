@@ -113,8 +113,6 @@ bar {
     swaybar_command waybar
 
 }
-
-
 bindsym $mod+r mode "resize"
 exec mako
 exec  wlsunset -l -33.3 -L -70.6

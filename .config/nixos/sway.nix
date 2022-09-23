@@ -35,7 +35,7 @@ let
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
       gsettings set $gnome_schema gtk-theme 'Materia-dark'
       gsettings set $gnome_schema icon-theme 'Papirus-Dark'
-      gsettings set $gnome_schema cursor-theme 'capitaine-cursors-white'
+      gsettings set $gnome_schema cursor-theme 'capitaine-cursors'
       gsettings set $gnome_schema font-name 'Jost* 12'
       gsettings set $gnome_schema cursor-size 32
 
@@ -51,7 +51,7 @@ in {
     settings = {
       default_session = {
         command =
-          "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --greeting 'God is dead' --time --cmd sway";
+          "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --greeting 'God is dead' --time --cmd sway  --sessions ${pkgs.i3}/share/applications/i3.desktop";
         user = "greeter";
       };
     };
@@ -64,44 +64,55 @@ in {
     '';
   };
   security.polkit.enable = true;
-  environment.systemPackages = with pkgs; [
-    swaybg
-    libsForQt5.qtstyleplugin-kvantum
-    capitaine-cursors
-    clipman
-    configure-gtk
-    dbus-sway-environment
-    firefox-wayland
-    glib
-    greetd.gtkgreet
-    grim
-    imv
-    kanshi
-    kitty
-    mako
-    materia-theme
-    mpv
-    papirus-icon-theme
-    pavucontrol
-    pcmanfm
-    polkit
-    polkit_gnome
-    rofi-wayland
-    wofi
-    slurp
-    sway
-    sway-polkit
-    swayidle
-    swaylock-effects
-    thunderbird-wayland
-    transmission-gtk
-    waybar
-    wayland
-    wl-clipboard
-    wlsunset
-    xarchiver
-    zathura
-  ];
+  services.xserver.windowManager.i3.enable = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland-egl
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    '';
+    extraPackages = with pkgs; [
+      swaybg
+      libsForQt5.qtstyleplugin-kvantum
+      capitaine-cursors
+      clipman
+      configure-gtk
+      dbus-sway-environment
+      firefox-wayland
+      glib
+      greetd.gtkgreet
+      grim
+      imv
+      kanshi
+      kitty
+      mako
+      materia-theme
+      mpv
+      papirus-icon-theme
+      pavucontrol
+      pcmanfm
+      polkit
+      polkit_gnome
+      rofi-wayland
+      wofi
+      slurp
+      sway-polkit
+      swayidle
+      swaylock-effects
+      thunderbird-wayland
+      transmission-gtk
+      waybar
+      wayland
+      wl-clipboard
+      wlsunset
+      xarchiver
+      zathura
+    ];
+
+  };
   fonts.fonts = with pkgs; [
     font-awesome
     jost
@@ -129,18 +140,5 @@ in {
     gtkUsePortal = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
 
-      export SDL_VIDEODRIVER=wayland
-        # QT (needs qt5.qtwayland in systemPackages):
-        export QT_QPA_PLATFORM=wayland-egl
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        # Fix for some Java AWT applications (e.g. Android Studio),
-        # use this if they aren't displayed properly:
-        export _JAVA_AWT_WM_NONREPARENTING=1
-    '';
-  };
 }

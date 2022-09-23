@@ -20,8 +20,11 @@
     kernelParams = [
       "quiet"
       "splash"
-      "vga=current"
+      "amdgpu"
       "boot.shell_on_fail"
+      "vt.global_cursor_default=0"
+
+      "loglevel=0"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=0"
       "udev.log_priority=0"
@@ -29,22 +32,29 @@
     plymouth = {
 
       enable = true;
-      theme = "solar";
     };
     consoleLogLevel = 0;
     initrd.verbose = false;
-    loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
 
-     efiSupport = true;
+    initrd.systemd.enable = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        editor = false;
+        graceful = true;
       };
       timeout = 0;
       efi.efiSysMountPoint = "/boot/efi";
       efi.canTouchEfiVariables = true;
     };
   };
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    amdvlk
+    rocm-opencl-icd
+    rocm-opencl-runtime
+  ];
   networking.hostName = "cobalto-negro";
   networking.hostId = "8556b001";
   networking.useDHCP = false;
@@ -55,7 +65,7 @@
   security.sudo.wheelNeedsPassword = false;
   console = { keyMap = "us"; };
   hardware.i2c.enable = true;
-  environment.systemPackages = [pkgs.linux-firmware];
+  environment.systemPackages = [ pkgs.linux-firmware ];
   fileSystems = {
     "/".options = [ "compress=zstd" ];
     "/home".options = [ "compress=zstd" ];
@@ -63,5 +73,5 @@
 
     "/swap".options = [ "noatime" ];
   };
-swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [{ device = "/swap/swapfile"; }];
 }
