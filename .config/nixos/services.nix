@@ -11,6 +11,7 @@
       drivers = [ pkgs.brlaser ];
     };
     openssh.enable = true;
+    onedrive.enable = true;
     gvfs.enable = true;
     devmon.enable = true;
     usbmuxd.enable = true;
@@ -31,16 +32,16 @@
                format          "44100:16:2"
         }
       '';
-     
+
       network.listenAddress = "any";
       startWhenNeeded = true;
     };
- transmission = {
-        enable = true;
-        home = "/home/diego/Downloads/Torrenting";
-        settings.watch-dir = "/home/diego/Downloads";
+    transmission = {
+      enable = true;
+      home = "/home/diego/Downloads/Torrenting";
+      settings.watch-dir = "/home/diego/Downloads";
 
-      };
+    };
   };
   environment.systemPackages = with pkgs; [ libimobiledevice ifuse ];
 

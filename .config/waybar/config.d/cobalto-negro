@@ -1,6 +1,5 @@
   {
     "modules-left": [
-    "custom/spacer",
       "sway/workspaces"
     ],
     "layer": "bottom",
