@@ -23,7 +23,6 @@
       "amdgpu"
       "boot.shell_on_fail"
       "vt.global_cursor_default=0"
-
       "loglevel=0"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=0"

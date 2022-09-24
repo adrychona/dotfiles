@@ -13,6 +13,7 @@
       krita
       gimp
       inkscape
+      onlyoffice-bin
     ];
 
   };

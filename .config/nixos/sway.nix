@@ -77,6 +77,7 @@ in {
     extraPackages = with pkgs; [
       swaybg
       libsForQt5.qtstyleplugin-kvantum
+      autotiling
       capitaine-cursors
       clipman
       configure-gtk
@@ -87,7 +88,7 @@ in {
       grim
       imv
       kanshi
-      kitty
+      alacritty
       mako
       materia-theme
       mpv

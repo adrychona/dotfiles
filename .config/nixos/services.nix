@@ -11,6 +11,7 @@
       drivers = [ pkgs.brlaser ];
     };
     openssh.enable = true;
+    flatpak.enable = true;
     onedrive.enable = true;
     gvfs.enable = true;
     devmon.enable = true;
